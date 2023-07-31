@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Movie Recommendation System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  </head>
+  <body class="bg-gray-300">
+    <header class="text-gray-600 body-font -my-8">
+        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+          <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-pink-500 rounded-full" viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+            <a href="/"><span class="ml-3 text-xl">MovieSage</span></a>
+          </a>
+          <nav class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
+            <a href="/" class="mr-5 hover:text-gray-900">Home</a>
+            <a href="/about" class="mr-5 hover:text-gray-900">About</a>
+            <a href="/contact" class="mr-5 hover:text-gray-900">Contact us</a>
+            <a href="/recommendation" class="mr-5 hover:text-gray-900">Recommendation</a>
+          </nav>
+         
+        </div>
+      </header>
+      <section class="text-gray-600 body-font -my-16">
+        <div class="container px-5 py-24 mx-auto">
+          <div class="flex flex-col text-center w-full mb-12">
+            <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Movie recommendation system</h1>
+            <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Welcome to our Movie Recommendation System website! Discover your next cinematic adventure with our cutting-edge recommendation engine. Our platform employs advanced algorithms that analyze your viewing preferences, favorite genres, and past movie ratings to curate a personalized selection of top-notch movie suggestions just for you. Whether you're a film enthusiast or a casual viewer, our intuitive interface makes it effortless to explore a diverse range of movie options.</p>
+            <br>
+            <p class="text-primary"><b>{{error}}</b></p>
+        </div>
+          <div class="row text-center">
+          <div class="col-md-3"></div>
+          <div class="center col-md-6">
+            <form action="/recommendation" method="POST">
+              <select class="form-select"  id="movies" name="movies" aria-label="Default select example">
+                {% for j in movie_list %}
+                
+                <option value="{{j}}">{{j}}</option>
+                {% endfor %}
+              </select><br>
+              <button type="submit" class="btn btn-outline-primary">Submit</button> 
+            </form>
+          </div>
+         </div>
+        </div>
+      </section>
+   
+      <section class="text-gray-600 body-font -my-4">
+
+        <div class="container px-5 py-24 mx-auto">
+          <h2 class="lg:w-1/2 w-full leading-relaxed text-gray-900"><b>These are the recommendation movies</b></h2>
+         
+          <div class="flex flex-wrap -m-4">
+            {% for movies_name, poster in movies_and_posters %}
+            <div class="xl:w-1/4 md:w-1/2 p-3">
+                <div class="bg-gray-100 p-6 rounded-lg">
+                  <img class="h-50 rounded w-full object-cover object-center mb-6" src="{{ poster }}" alt="content">
+                    <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">Movie Name</h3>
+                    <h2 class="text-lg text-gray-900 font-medium title-font mb-4">{{ movies_name }}</h2>
+                </div>
+            </div>
+            {% endfor %}
+            
+          </div>
+        </div>
+      </section>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  </body>
+</html>
